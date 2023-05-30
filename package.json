@@ -28,7 +28,8 @@
    },
    "prettier": {
       "tabWidth": 3,
-      "useTabs": false
+      "useTabs": false,
+      "singleQuote": true
    },
    "browserslist": {
       "production": [
