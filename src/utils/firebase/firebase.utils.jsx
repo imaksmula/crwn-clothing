@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import {
    getAuth,
-   signInWithPopup,
    GoogleAuthProvider,
+   signInWithPopup,
    signInWithRedirect,
 } from 'firebase/auth';
 
@@ -25,27 +25,32 @@ googleProvider.setCustomParameters({
    prompt: 'select_account',
 });
 
-export const auth = getAuth(); // Keeps track of the auth state of the entire application
+// `auth` keeps track of the authentication state for the entire application.
+// It provides access to Firebase Authentication services and the current user's authentication status.
+export const auth = getAuth();
 
 export const signInWithGooglePopup = () =>
    signInWithPopup(auth, googleProvider);
+
 export const signInWithGoogleRedirect = () =>
    signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth) => {
+   //Get a reference to the user's document in the 'users' collection
    const userDocRef = doc(db, 'users', userAuth.uid);
 
-   console.log(userDocRef);
-
+   //Fetch the document from the Firestore database
    const userSnapshot = await getDoc(userDocRef);
 
+   // Check if the document exists in the Firestore database
    if (!userSnapshot.exists()) {
       const { displayName, email } = userAuth;
       const createdAt = new Date();
 
       try {
+         // If the document does not exist, create it with the following data
          await setDoc(userDocRef, {
             displayName,
             email,
