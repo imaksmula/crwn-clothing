@@ -9,12 +9,12 @@ import {
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
-   apiKey: 'AIzaSyAbgkZX50S_xaZTGQs30u0jiAjX3tj_uFs',
-   authDomain: 'crwn-clothing-db-1de48.firebaseapp.com',
-   projectId: 'crwn-clothing-db-1de48',
-   storageBucket: 'crwn-clothing-db-1de48.appspot.com',
-   messagingSenderId: '886400556009',
-   appId: '1:886400556009:web:6211dc3421a99a5d044978',
+   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -25,7 +25,7 @@ googleProvider.setCustomParameters({
    prompt: 'select_account',
 });
 
-export const auth = getAuth();
+export const auth = getAuth(); // Keeps track of the auth state of the entire application
 
 export const signInWithGooglePopup = () =>
    signInWithPopup(auth, googleProvider);
