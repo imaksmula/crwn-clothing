@@ -38,7 +38,7 @@ export const signInWithGoogleRedirect = () =>
 export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth) => {
-   //Get a reference to the user's document in the 'users' collection
+   //Get a reference to the user's document in the 'users' collection. Stores in user's memory. Does not make any queries to Firebase.
    const userDocRef = doc(db, 'users', userAuth.uid);
 
    //Fetch the document from the Firestore database
